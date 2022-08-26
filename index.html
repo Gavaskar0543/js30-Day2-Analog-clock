@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Clock|Gava</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(43, 43, 43);
+      }
+      .clock {
+        height: 300px;
+        width: 300px;
+        border: 6px solid rgb(255, 255, 55);
+        border-radius: 150px;
+        position: absolute;
+      }
+      .seconds-hand {
+        position: absolute;
+        height: 130px;
+        width: 2px;
+        background-color: rgb(70, 255, 255);
+        left: 149px;
+        bottom: 149px;
+        opacity: 50%;
+        transform-origin: 0 100%;
+      }
+      .minute-hand {
+        height: 100px;
+        width: 2px;
+        background-color: red;
+        position: absolute;
+        left: 149px;
+        bottom: 149px;
+        transform-origin: 0 100%;
+      }
+      .Hours-hand {
+        height: 80px;
+        width: 4px;
+        background-color: hotpink;
+        position: absolute;
+        left: 149px;
+        bottom: 149px;
+
+        transform-origin: 0 100%;
+      }
+      .centerof {
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+        background-color: yellow;
+        position: absolute;
+        left: 145px;
+        bottom: 145px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="seconds-hand" id="sec"></div>
+      <div class="minute-hand" id="min"></div>
+      <div class="Hours-hand" id="hrs"></div>
+      <div class="centerof"></div>
+    </div>
+    <script>
+      //getting elements from dom
+      const Minute = document.getElementById("min");
+      const secondIn = document.getElementById("sec");
+      const Hour = document.getElementById("hrs");
+      //function to get current time
+      const showDate = () => {
+        const now = new Date();
+        const Second = now.getSeconds();
+        const Minutes = now.getMinutes();
+        const Hours = now.getHours();
+        //360 deg circle / 60 =6
+        const timeinterval = 6;
+        //sec
+        secondIn.style.transform = "rotate(" + Second * timeinterval + "deg)";
+        //min
+        Minute.style.transform =
+          "rotate(" + (Minutes * timeinterval + Second / 10) + "deg)";
+        //hrs
+        Hour.style.transform = "rotate(" + (Hours * 30 + Minutes / 2) + "deg)";
+      };
+      // setInterval() method calls a function at specified intervals (in milliseconds)
+      setInterval(showDate, 100);
+    </script>
+  </body>
+</html>
